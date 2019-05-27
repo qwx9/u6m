@@ -1,0 +1,47 @@
+.TH U6MOPL 1
+.SH NAME
+u6mopl, u6dec \- Ultima 6 data file handlers
+.SH SYNOPSIS
+.B u6mopl
+[
+.B -l
+]
+.PP
+.B u6dec
+.SH DESCRIPTION
+.I U6mopl
+decodes Ultima 6 M format music files into a stream of
+.SM OPL2
+commands suitable for playback using
+.I opl2
+at a rate of 60 Hz (see
+.IR opl2 (1)).
+It reads the entire file from standard in,
+then writes a stream of
+.SM OPL2
+commands to standard out.
+.PP
+While M format files are meant to be looped perpetually,
+it is disabled by default to allow further manipulation of the decoded data.
+The
+.B -l
+flag enables looping.
+.PP
+.I U6dec
+decompresses Ultima 6 data files or chunks stored using
+.SM LZW
+compression.
+.SH EXAMPLES
+Loop a compressed M format file using
+.IR opl2 :
+.IP
+.EX
+% u6dec <ultima.m | u6mopl -l | opl2 -n 60 >/dev/audio
+.EE
+.SH SEE ALSO
+.IR opl2 (1)
+.SH HISTORY
+.I U6mopl
+and
+.I u6dec
+first appeared in 9front (September, 2017).
